@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'create_appointment.css' %}">
+</head>
+<body>
+    <form action="{% url 'create_appointment' %}" method="POST">
+        {% csrf_token %}
+        <div class="step1 step">
+            <div class="installation-type-container container">
+                <h1 class="installation-title form-title">Installation</h1>
+                <p class="installation-description description">What kind of installation do you need?</p>
+
+                <div class="installation-type-options options">
+                    <input type="checkbox" class="solar-panel option-btn" name="solar-panel installation-type" value="solar-panel" onclick="selectOnlyOne(this)">
+                    <label class="option-btn-label" for="solar-panel">Solar Panel</label>
+
+                    <input type="checkbox" class="ev-charger option-btn" name="ev-charger installation-type" value="ev-charger" onclick="selectOnlyOne(this)">
+                    <label class="option-btn-label" for="ev-charger">EV Charger</label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function selectOnlyOne(selectedCheckbox) {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (cb !== selectedCheckbox) cb.checked = false;
+            });
+        }
+    </script>
+</body>
+</html>

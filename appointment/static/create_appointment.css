@@ -1,0 +1,19 @@
+.option-btn {
+    display: none;
+}
+
+.option-btn-label {
+    padding: 15px 20px;
+    border: 2px solid gray;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    text-align: center;
+    margin: 10px auto;
+    transition: 0.3s;
+}
+
+input[type="checkbox"]:checked + label {
+    border-color: blue;
+    background-color: lightblue;
+}
