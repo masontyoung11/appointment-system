@@ -25,7 +25,24 @@
                 </div>
             </div>
 
-            
+            <div class="bedroom-amm-container container">
+                <h1 class="bedroom-amm-title form-title">Bedrooms</h1>
+                <p class="bedroom-amm-description description">How many bedrooms do you have?</p>
+
+                <div class="bedroom-amm-options options">
+                    <input type="checkbox" class="low-bedrooms option-btn" id="low-bedrooms" name="low-bedrooms installation-type" value="low-bedrooms" onclick="selectOnlyOne(this)">
+                    <label class="option-btn-label" for="low-bedrooms">1-2 Bedrooms (Low)</label>
+
+                    <input type="checkbox" class="medium-bedrooms option-btn" id="medium-bedrooms" name="medium-bedrooms installation-type" value="medium-bedrooms" onclick="selectOnlyOne(this)">
+                    <label class="option-btn-label" for="medium-bedrooms">2-4 Bedrooms (Medium)</label>
+
+                    <input type="checkbox" class="high-bedrooms option-btn" id="high-bedrooms" name="high-bedrooms installation-type" value="high-bedrooms" onclick="selectOnlyOne(this)">
+                    <label class="option-btn-label" for="high-bedrooms">4+ Bedrooms (High)</label>
+
+                    <input type="checkbox" class="custom-bedrooms option-btn" id="custom-bedrooms" name="custom-bedrooms installation-type" value="custom-bedrooms" onclick="selectOnlyOne(this)">
+                    <label class="option-btn-label" for="custom-bedrooms">Custom</label>
+                </div>
+            </div>
         </div>
     </form>
 

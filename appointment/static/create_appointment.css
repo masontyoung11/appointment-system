@@ -36,7 +36,7 @@ input[type="checkbox"]:checked + label {
     display: flex;
     flex-direction: column;
 
-    width: 50rem;
+    width: 35rem;
 
     border-radius: 20px;
 }
@@ -45,5 +45,4 @@ input[type="checkbox"]:checked + label {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    justify-content: space-between;
 }
