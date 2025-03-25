@@ -24,6 +24,7 @@ input[type="checkbox"]:checked + label {
 
     display: flex;
     flex-direction: column;
+    gap: 2rem;
 }
 
 .container {
