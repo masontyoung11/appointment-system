@@ -5,6 +5,7 @@
 .option-btn-label {
     padding: 15px 20px;
     border: 2px solid gray;
+    background-color: white;
     cursor: pointer;
     display: block;
     width: 200px;
@@ -15,5 +16,25 @@
 
 input[type="checkbox"]:checked + label {
     border-color: blue;
-    background-color: lightblue;
+}
+
+.step {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    box-sizing: border-box;
+
+    background-color: lightgrey;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 50rem;
+
+    border-radius: 20px;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
 }
