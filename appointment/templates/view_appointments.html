@@ -6,6 +6,14 @@
     <title>Viewing Appointments</title>
 </head>
 <body>
-    
+    {% for appointment in appointments %}
+        <div>
+            <h2>Appointment ID: {{ appointment.id }}</h2>
+            <p>Date: {{ appointment.date }}</p>
+            <p>Time: {{ appointment.time_choice }}</p>
+            <p>Type: {{ appointment.type }}</p>
+            <p>Patient: {{ appointment.energy_usage }}</p>
+        </div>
+    {% endfor %}
 </body>
 </html>
