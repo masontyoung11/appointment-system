@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Appointments
 
 # Create your views here.
 def create_appointment(request):
@@ -17,8 +18,8 @@ def create_appointment(request):
         if energy_usage == "custom-bedrooms-input":
             energy_usage = request.POST.get('custom-bedrooms-input')
         else:
-            print(energy_usage)
             energy_usage = bedroom_to_energy_map.get(energy_usage, 1)
-            print(energy_usage)
+
+        
 
     return render(request, 'create_appointment.html')
