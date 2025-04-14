@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Appointments
 
 # Create your views here.
@@ -20,6 +20,15 @@ def create_appointment(request):
         else:
             energy_usage = bedroom_to_energy_map.get(energy_usage, 1)
 
+
+        Appointments.objects.create(type=appointment_type, energy_usage=energy_usage, time_choice=time_choice, date=date)
+        return redirect('view_appointments')  # Redirect to a view that lists all appointments
         
 
     return render(request, 'create_appointment.html')
+
+
+def view_appointments(request):
+    appointments = Appointments.objects.all()
+
+    return render(request, 'view_appointments.html', {'appointments': appointments})
