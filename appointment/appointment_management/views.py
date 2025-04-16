@@ -32,3 +32,14 @@ def view_appointments(request):
     appointments = Appointments.objects.all()
 
     return render(request, 'view_appointments.html', {'appointments': appointments})
+
+
+def complete_appointment(request):
+    if request.method == "POST":
+        appointment_id = request.POST.get('appointment_id')
+        appointment = Appointments.objects.get(id=appointment_id)
+
+        appointment.delete()  # Delete the appointment
+        return redirect('view_appointments')  # Redirect to a view that lists all appointments
+
+    return render(request, 'view_appointments.html')

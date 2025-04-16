@@ -14,6 +14,12 @@
             <p>Type: {{ appointment.type }}</p>
             <p>Patient: {{ appointment.energy_usage }}</p>
         </div>
+
+        <form method="post" action="{% url 'complete_appointment' %}">
+            {% csrf_token %}
+            <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+            <button type="submit" style="padding: 1rem; background-color: blue; border-radius: 50px; text-align: center;">Complete Appointment</button>
+        </form>
     {% endfor %}
 </body>
 </html>
