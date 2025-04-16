@@ -18,7 +18,7 @@
         <form method="post" action="{% url 'complete_appointment' %}">
             {% csrf_token %}
             <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
-            <button type="submit" style="padding: 1rem; background-color: blue; border-radius: 50px; text-align: center;">Complete Appointment</button>
+            <button type="submit" style="padding: 1rem; background-color: blue; border-radius: 50px; text-align: center; border: none;outline: none; color: white;">Complete Appointment</button>
         </form>
     {% endfor %}
 </body>
