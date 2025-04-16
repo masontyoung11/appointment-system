@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'appointment_management.apps.AppointmentManagementConfig',
+    'footprintCalculator.apps.FootprintcalculatorConfig',
 ]
 
 MIDDLEWARE = [

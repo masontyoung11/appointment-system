@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Footprint Quiz</title>
+  </head>
+  <body>
+    <form action="{% url 'create_appointment' %}" method="POST">
+      {% csrf_token %}
+      <div class="step1 step visible">
+        <div class="installation-type-container container">
+          <h1 class="installation-title form-title">CARBON</h1>
+          <p class="installation-description description">
+            What kind of installation do you need?
+          </p>
+
+          <div class="installation-type-options options">
+            <input
+              type="checkbox"
+              class="solar-panel option-btn"
+              id="solar-panel"
+              name="installation-type"
+              value="solar-panel"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="solar-panel"
+              >Solar Panel</label
+            >
+
+            <input
+              type="checkbox"
+              class="ev-charger option-btn"
+              id="ev-charger"
+              name="installation-type"
+              value="ev-charger"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="ev-charger">EV Charger</label>
+          </div>
+        </div>
+
+        <div class="bedroom-amm-container container">
+          <h1 class="bedroom-amm-title form-title">Bedrooms</h1>
+          <p class="bedroom-amm-description description">
+            How many bedrooms do you have?
+          </p>
+
+          <div class="bedroom-amm-options options">
+            <input
+              type="checkbox"
+              class="low-bedrooms option-btn"
+              id="low-bedrooms"
+              name="bedroom-amm"
+              value="low-bedrooms"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="low-bedrooms"
+              >1-2 Bedrooms (Low)</label
+            >
+
+            <input
+              type="checkbox"
+              class="medium-bedrooms option-btn"
+              id="medium-bedrooms"
+              name="bedroom-amm"
+              value="medium-bedrooms"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="medium-bedrooms"
+              >2-4 Bedrooms (Medium)</label
+            >
+
+            <input
+              type="checkbox"
+              class="high-bedrooms option-btn"
+              id="high-bedrooms"
+              name="bedroom-amm"
+              value="high-bedrooms"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="high-bedrooms"
+              >4+ Bedrooms (High)</label
+            >
+
+            <input
+              type="checkbox"
+              class="custom-bedrooms option-btn"
+              id="custom-bedrooms"
+              name="bedroom-amm"
+              value="custom-bedrooms"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="custom-bedrooms">Custom</label>
+
+            <input
+              type="text"
+              class="custom-bedrooms-input option-btn-label"
+              id="custom-bedrooms-input"
+              name="custom-bedrooms-input energy-usage"
+              placeholder="Enter your energy usage (kWh)"
+            />
+
+            <input
+              type="button"
+              class="next-btn option-btn-label"
+              style="width: 98%"
+              id="next-btn"
+              value="Next"
+              onclick="document.querySelector('.step1').classList.remove('visible'); document.querySelector('.step2').classList.add('visible');"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="step2 step">
+        <div class="time-choice-container container">
+          <h1 class="time-choice-title form-title">Time</h1>
+          <p class="time-choice-description description">
+            Select a time that works for you.
+          </p>
+
+          <div class="time-choice-options options">
+            <input
+              type="checkbox"
+              class="morning option-btn"
+              id="morning"
+              name="time-choice"
+              value="morning"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="morning"
+              >Morning (9am-12pm)</label
+            >
+
+            <input
+              type="checkbox"
+              class="afternoon option-btn"
+              id="afternoon"
+              name="time-choice"
+              value="afternoon"
+              onclick="selectOnlyOne(this)"
+            />
+            <label class="option-btn-label" for="afternoon"
+              >Afternoon (12pm-5pm)</label
+            >
+          </div>
+        </div>
+
+        <div class="time-choice-container container">
+          <h1 class="time-choice-title form-title">Date</h1>
+          <p class="time-choice-description description">
+            Select a date that works for you.
+          </p>
+
+          <div class="time-choice-options options">
+            <input
+              type="date"
+              class="date date-selector"
+              id="date"
+              name="date"
+            />
+          </div>
+
+          <input
+            type="submit"
+            class="next-btn option-btn-label"
+            style="width: 98%"
+            id="next-btn"
+            value="Submit"
+          />
+        </div>
+      </div>
+    </form>
+
+    <script>
+      function selectOnlyOne(selectedCheckbox) {
+        selectedCheckbox
+          .parentElement('input[type="checkbox"]')
+          .forEach((cb) => {
+            if (cb !== selectedCheckbox) cb.checked = false;
+          });
+
+        if (selectedCheckbox.id === "custom-bedrooms") {
+          document
+            .getElementById("custom-bedrooms-input")
+            .classList.toggle("visible");
+        }
+      }
+    </script>
+  </body>
+</html>

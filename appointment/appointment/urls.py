@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-import appointment_management
 
 urlpatterns = [
     path('', views.home),
     path('', include('appointment_management.urls')),
+    path('', include('footprintCalculator.urls')),
     path('admin/', admin.site.urls),
 ]
