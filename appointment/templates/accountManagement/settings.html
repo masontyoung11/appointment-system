@@ -1,69 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Settings</title>
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'settings.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'settings.css' %}" />
+  </head>
+  <body>
     <div class="sidebar">
-        <button type="button" id="account-btn" class="sidebar-button" onclick="showDiv('account-details')">Account Details</button>
-        <button type="button" id="appointment-btn" class="sidebar-button" onclick="showDiv('appointments')">Appointments</button>
-        <button type="button" id="security-btn" class="sidebar-button" onclick="showDiv('security')">Security</button>
+      <button
+        type="button"
+        id="account-btn"
+        class="sidebar-button"
+        onclick="showDivAndHighlight('account-details', this)"
+      >
+        Account Details
+      </button>
+      <button
+        type="button"
+        id="appointment-btn"
+        class="sidebar-button"
+        onclick="showDivAndHighlight('appointments', this)"
+      >
+        Appointments
+      </button>
+      <button
+        type="button"
+        id="security-btn"
+        class="sidebar-button"
+        onclick="showDivAndHighlight('security', this)"
+      >
+        Security
+      </button>
+
+      <script>
+        function showDivAndHighlight(divId, button) {
+          const contentDivs = document.querySelectorAll(".content-div");
+          const buttons = document.querySelectorAll(".sidebar-button");
+
+          // Hide all content divs
+          contentDivs.forEach((div) => (div.style.display = "none"));
+
+          // Remove 'open' class from all buttons
+          buttons.forEach((btn) => btn.classList.remove("open"));
+
+          // Show the selected div and add 'open' class to the clicked button
+          document.getElementById(divId).style.display = "block";
+          button.classList.add("open");
+        }
+      </script>
     </div>
     <div class="content">
-        <div id="account-details" class="content-div" style="display: none;">
-            <h2>Account Details</h2>
-            <p>Put user account details here.</p>
-            <!-- Enter requests info -->
-            <form method="POST" action="#">
-                {% csrf_token %}
-                <label for="username">First Name:</label>
-                <input type="text" id="username" name="username" value="{{ user.username }}" required>
-                <br>
-                <label for="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
-                <br>
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" value="{{ user.phone }}" required>
-                <br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ user.email }}" required>
-                <br>
-                <!-- Put rest of user information here -->
-                <button type="submit">Update</button>
-            </form>
+      <div id="account-details" class="content-div" style="display: none">
+        <h2>Account Details</h2>
+        <p>Put user account details here.</p>
+        <!-- Enter requests info -->
+        <form method="POST" action="#">
+          {% csrf_token %}
+          <label for="username">First Name:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value="{{ user.username }}"
+            required
+          />
+          <br />
+          <label for="last_name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value="{{ user.last_name }}"
+            required
+          />
+          <br />
+          <label for="phone">Phone Number:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            value="{{ user.phone }}"
+            required
+          />
+          <br />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ user.email }}"
+            required
+          />
+          <br />
+          <!-- Put rest of user information here -->
+          <button type="submit">Update</button>
+        </form>
+      </div>
+      <div id="appointments" class="content-div" style="display: none">
+        <h2>Appointments</h2>
+        <p>Here are your appointments.</p>
+        <!--Loop through current user's appointments-->
+        {% for appointment in appointments %}
+        <div class="appointment">
+          <p>Date: {{ appointment.date }}</p>
+          <p>Time: {{ appointment.time_choice }}</p>
+          <p>Type: {{ appointment.type }}</p>
+          <button type="button">Cancel</button>
         </div>
-        <div id="appointments" class="content-div" style="display: none;">
-            <h2>Appointments</h2>
-            <p>Here are your appointments.</p>
-            <!--Loop through current user's appointments-->
-            {% for appointment in appointments %}
-                <div class="appointment">
-                    <p>Date: {{ appointment.date }}</p>
-                    <p>Time: {{ appointment.time_choice }}</p>
-                    <p>Type: {{ appointment.type }}</p>
-                    <button type="button">Cancel</button>
-                </div>
-            {% empty %}
-                <p>No appointments found.</p>
-            {% endfor %}
-        </div>
-        <div id="security" class="content-div" style="display: none;">
-            <h2>Security</h2>
-            <p>Here are your security settings.</p>
-        </div>
+        {% empty %}
+        <p>No appointments found.</p>
+        {% endfor %}
+      </div>
+      <div id="security" class="content-div" style="display: none">
+        <h2>Security</h2>
+        <p>Here are your security settings.</p>
+      </div>
     </div>
 
     <script>
-        function showDiv(divId) {
-            const contentDivs = document.querySelectorAll('.content-div');
-            contentDivs.forEach(div => div.style.display = 'none');
-            document.getElementById(divId).style.display = 'block';
-        }
+      function showDiv(divId) {
+        const contentDivs = document.querySelectorAll(".content-div");
+        contentDivs.forEach((div) => (div.style.display = "none"));
+        document.getElementById(divId).style.display = "block";
+      }
     </script>
-</body>
+  </body>
 </html>
