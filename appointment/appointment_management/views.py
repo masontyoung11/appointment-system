@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Appointments
+from footprintCalculator.models import carbonFootprint
 
 # Create your views here.
 def create_appointment(request):
@@ -25,13 +26,14 @@ def create_appointment(request):
         return redirect('view_appointments')  # Redirect to a view that lists all appointments
         
 
-    return render(request, 'create_appointment.html')
+    return render(request, 'appointment_management/create_appointment.html')
 
 
 def view_appointments(request):
     appointments = Appointments.objects.all()
+    footprint = carbonFootprint.objects.all()
 
-    return render(request, 'view_appointments.html', {'appointments': appointments})
+    return render(request, 'appointment_management/view_appointments.html', {'appointments': appointments, 'footprint': footprint})
 
 
 def complete_appointment(request):
@@ -42,4 +44,4 @@ def complete_appointment(request):
         appointment.delete()  # Delete the appointment
         return redirect('view_appointments')  # Redirect to a view that lists all appointments
 
-    return render(request, 'view_appointments.html')
+    return render(request, 'appointment_management/view_appointments.html')

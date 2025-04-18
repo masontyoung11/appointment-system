@@ -9,10 +9,14 @@
     {% for appointment in appointments %}
         <div>
             <h2>Appointment ID: {{ appointment.id }}</h2>
+            <p>Client Name: {{ appointment.client_name }}</p>
             <p>Date: {{ appointment.date }}</p>
             <p>Time: {{ appointment.time_choice }}</p>
             <p>Type: {{ appointment.type }}</p>
-            <p>Patient: {{ appointment.energy_usage }}</p>
+            <p>Energy Usage: {{ appointment.energy_usage }}</p>
+            <p>Carbon Footprint: {{ footprint.carbon_footprint }}</p>
+
+            
         </div>
 
         <form method="post" action="{% url 'complete_appointment' %}">

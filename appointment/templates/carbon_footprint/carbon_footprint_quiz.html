@@ -4,173 +4,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Footprint Quiz</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'create_appointment.css' %}" />
   </head>
   <body>
-    <form action="{% url 'create_appointment' %}" method="POST">
+    <form action="{% url 'carbon_quiz' %}" method="POST">
       {% csrf_token %}
       <div class="step1 step visible">
-        <div class="installation-type-container container">
-          <h1 class="installation-title form-title">CARBON</h1>
-          <p class="installation-description description">
-            What kind of installation do you need?
+        <div class="energy-usage-container container">
+          <h1 class="energy-usage-title form-title">Energy</h1>
+          <p class="energy-usage-description description">
+            Enter information about your energy usage.
           </p>
 
-          <div class="installation-type-options options">
-            <input
-              type="checkbox"
-              class="solar-panel option-btn"
-              id="solar-panel"
-              name="installation-type"
-              value="solar-panel"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="solar-panel"
-              >Solar Panel</label
+          <div class="energy-usage-quiz quiz-option">
+            <label class="footprint-quiz-label" for=""
+              >Enter your usage (kWh)</label
             >
-
-            <input
-              type="checkbox"
-              class="ev-charger option-btn"
-              id="ev-charger"
-              name="installation-type"
-              value="ev-charger"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="ev-charger">EV Charger</label>
-          </div>
-        </div>
-
-        <div class="bedroom-amm-container container">
-          <h1 class="bedroom-amm-title form-title">Bedrooms</h1>
-          <p class="bedroom-amm-description description">
-            How many bedrooms do you have?
-          </p>
-
-          <div class="bedroom-amm-options options">
-            <input
-              type="checkbox"
-              class="low-bedrooms option-btn"
-              id="low-bedrooms"
-              name="bedroom-amm"
-              value="low-bedrooms"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="low-bedrooms"
-              >1-2 Bedrooms (Low)</label
-            >
-
-            <input
-              type="checkbox"
-              class="medium-bedrooms option-btn"
-              id="medium-bedrooms"
-              name="bedroom-amm"
-              value="medium-bedrooms"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="medium-bedrooms"
-              >2-4 Bedrooms (Medium)</label
-            >
-
-            <input
-              type="checkbox"
-              class="high-bedrooms option-btn"
-              id="high-bedrooms"
-              name="bedroom-amm"
-              value="high-bedrooms"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="high-bedrooms"
-              >4+ Bedrooms (High)</label
-            >
-
-            <input
-              type="checkbox"
-              class="custom-bedrooms option-btn"
-              id="custom-bedrooms"
-              name="bedroom-amm"
-              value="custom-bedrooms"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="custom-bedrooms">Custom</label>
-
             <input
               type="text"
-              class="custom-bedrooms-input option-btn-label"
-              id="custom-bedrooms-input"
-              name="custom-bedrooms-input energy-usage"
-              placeholder="Enter your energy usage (kWh)"
+              class="energy-usage option-btn-label"
+              id="energy-usage-input"
+              name="energy-usage"
+              placeholder="0kWh"
+            />
+          </div>
+        </div>
+
+        <div class="transport-container container">
+          <h1 class="transport-title form-title">Transport</h1>
+          <p class="transport-description description">
+            Enter information about your transport.
+          </p>
+
+          <div class="transportation-quiz quiz-option">
+            <label class="personal-transport-label" for=""
+              >How many miles do you travel a week?</label
+            >
+            <input
+              type="text"
+              class="personal-transport option-btn-label"
+              id="personal-transport-input"
+              name="personal-transport"
+              placeholder="0mi"
+              style="margin-bottom: 1rem"
             />
 
+            <label class="public-transport-label" for=""
+              >How many miles do you travel a week with public transport?</label
+            >
             <input
-              type="button"
-              class="next-btn option-btn-label"
-              style="width: 98%"
-              id="next-btn"
-              value="Next"
-              onclick="document.querySelector('.step1').classList.remove('visible'); document.querySelector('.step2').classList.add('visible');"
+              type="text"
+              class="public-transport-label option-btn-label"
+              id="public-transport-input"
+              name="public-transport-input"
+              placeholder="0mi"
+            />
+          </div>
+        </div>
+
+        <div class="food-intake-container container">
+          <h1 class="food-intake-title form-title">Food intake</h1>
+          <p class="food-intake-description description">
+            Enter information about your food intake
+          </p>
+
+          <div class="food-intake-quiz quiz-option">
+            <label class="food-intake-quiz-label" for=""
+              >How many kg of meat do you eat a week?</label
+            >
+            <input
+              type="text"
+              class="food-intake option-btn-label"
+              id="food-intake-input"
+              name="food-intake"
+              placeholder="0kg"
             />
           </div>
         </div>
       </div>
 
-      <div class="step2 step">
-        <div class="time-choice-container container">
-          <h1 class="time-choice-title form-title">Time</h1>
-          <p class="time-choice-description description">
-            Select a time that works for you.
-          </p>
-
-          <div class="time-choice-options options">
-            <input
-              type="checkbox"
-              class="morning option-btn"
-              id="morning"
-              name="time-choice"
-              value="morning"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="morning"
-              >Morning (9am-12pm)</label
-            >
-
-            <input
-              type="checkbox"
-              class="afternoon option-btn"
-              id="afternoon"
-              name="time-choice"
-              value="afternoon"
-              onclick="selectOnlyOne(this)"
-            />
-            <label class="option-btn-label" for="afternoon"
-              >Afternoon (12pm-5pm)</label
-            >
-          </div>
-        </div>
-
-        <div class="time-choice-container container">
-          <h1 class="time-choice-title form-title">Date</h1>
-          <p class="time-choice-description description">
-            Select a date that works for you.
-          </p>
-
-          <div class="time-choice-options options">
-            <input
-              type="date"
-              class="date date-selector"
-              id="date"
-              name="date"
-            />
-          </div>
-
-          <input
-            type="submit"
-            class="next-btn option-btn-label"
-            style="width: 98%"
-            id="next-btn"
-            value="Submit"
-          />
-        </div>
-      </div>
+      <input
+        type="submit"
+        class="next-btn option-btn-label"
+        style="width: 33%"
+        id="next-btn"
+        value="Submit"
+        style="position: relative; top: -5rem"
+      />
     </form>
 
     <script>
@@ -188,5 +110,11 @@
         }
       }
     </script>
+
+    <style>
+      input {
+        text-align: left !important;
+      }
+    </style>
   </body>
 </html>
