@@ -103,16 +103,44 @@
         <h2>Appointments</h2>
         <p>Here are your appointments.</p>
         <!--Loop through current user's appointments-->
-        {% for appointment in appointments %}
-        <div class="appointment">
-          <p>Date: {{ appointment.date }}</p>
-          <p>Time: {{ appointment.time_choice }}</p>
-          <p>Type: {{ appointment.type }}</p>
-          <button type="button">Cancel</button>
-        </div>
-        {% empty %}
-        <p>No appointments found.</p>
-        {% endfor %}
+        <form method="POST" action="#">
+          {% csrf_token %}
+          {% for appointment in appointments %}
+          <div class="appointment">
+            <label for="appointment_date_{{ forloop.counter }}">Date:</label>
+            <input
+              type="text"
+              id="appointment_date_{{ forloop.counter }}"
+              name="appointment_date_{{ forloop.counter }}"
+              value="{{ appointment.date }}"
+              readonly
+            />
+            <br />
+            <label for="appointment_time_{{ forloop.counter }}">Time:</label>
+            <input
+              type="text"
+              id="appointment_time_{{ forloop.counter }}"
+              name="appointment_time_{{ forloop.counter }}"
+              value="{{ appointment.time_choice }}"
+              readonly
+            />
+            <br />
+            <label for="appointment_type_{{ forloop.counter }}">Type:</label>
+            <input
+              type="text"
+              id="appointment_type_{{ forloop.counter }}"
+              name="appointment_type_{{ forloop.counter }}"
+              value="{{ appointment.type }}"
+              readonly
+            />
+            <br />
+            <button type="submit" name="cancel_appointment" value="{{ appointment.id }}">Cancel</button>
+          </div>
+          <hr />
+          {% empty %}
+          <p>No appointments found.</p>
+          {% endfor %}
+        </form>
       </div>
       <div id="security" class="content-div" style="display: none">
         <h2>Security</h2>
