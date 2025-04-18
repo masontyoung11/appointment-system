@@ -1,3 +1,27 @@
 body {
-    color: red;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  width: 200px;
+}
+
+.sidebar-button {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+.content-div {
+  margin: 0 0 0 1rem;
 }
