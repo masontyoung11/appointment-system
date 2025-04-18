@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'appointment_management.apps.AppointmentManagementConfig',
     'footprintCalculator.apps.FootprintcalculatorConfig',
+    'accountManagement.apps.AccountmanagementConfig',
 ]
 
 MIDDLEWARE = [

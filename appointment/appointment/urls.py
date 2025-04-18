@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.home),
     path('', include('appointment_management.urls')),
     path('', include('footprintCalculator.urls')),
+    path('', include('accountManagement.urls')),
     path('admin/', admin.site.urls),
 ]
