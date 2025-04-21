@@ -53,7 +53,12 @@ body {
 
 .content-div form input {
     padding: 0.5rem;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     outline: none;
+}
+
+.appointment {
+    display: flex;
+    flex-direction: column;
 }

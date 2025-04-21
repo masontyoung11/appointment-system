@@ -57,8 +57,10 @@
         <h2>Account Details</h2>
         <p>Put user account details here.</p>
         <!-- Enter requests info -->
-        <form method="POST" action="#">
+        <form method="POST" action="{% url 'settings' %}">
           {% csrf_token %}
+          <input type="hidden" name="form_type" value="account_modification" />
+
           <label for="username">First Name:</label>
           <input
             type="text"
@@ -103,8 +105,13 @@
         <h2>Appointments</h2>
         <p>Here are your appointments.</p>
         <!--Loop through current user's appointments-->
-        <form method="POST" action="#">
+        <form method="POST" action="{% url 'settings' %}">
           {% csrf_token %}
+          <input
+            type="hidden"
+            name="form_type"
+            value="appointment_modification"
+          />
           {% for appointment in appointments %}
           <div class="appointment">
             <label for="appointment_date_{{ forloop.counter }}">Date:</label>
@@ -134,7 +141,13 @@
               readonly
             />
             <br />
-            <button type="submit" name="cancel_appointment" value="{{ appointment.id }}">Cancel</button>
+            <button
+              type="submit"
+              name="update_btn"
+              value="{{ appointment.id }}"
+            >
+              Update
+            </button>
           </div>
           <hr />
           {% empty %}
